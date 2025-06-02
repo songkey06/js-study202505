@@ -28,7 +28,7 @@ let n3= +n1 +n2;
 
 console.log(`n3: ${n3}`)
 
-let x:number = 50, y: number = 70;
+let x = 50, y = 70;
 
 // let operResult  = String(x) + y ;
 // let operResult  = x.String(x) + y ;
