@@ -71,7 +71,7 @@ console.log('===============');
 
 function greet(name = '', hi = '안녕하세요') {
   //아무것도 안들어왔다면 undefined
-  //defult값은 greet(name='', hi='안녕하세요')
+  //defaults 값은 greet(name='', hi='안녕하세요')
   return `${hi}, ${name}님!`;
 }
 
