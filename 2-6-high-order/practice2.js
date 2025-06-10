@@ -99,7 +99,7 @@ console.log('=================');
 //   예를 들어, `{서울: 총거래액, 부산: 총거래액}`과 같은 형태입니다.**
 
 const cityPerTrade = traders.reduce((resultObj, city)=>{
-  if (city.trader.city in resultObj){
+  if (city.trader.city in resultObj){///city.trader.city === undefined도 있음
     resultObj[city.trader.city]+=city.value;
   } else {
     resultObj[city.trader.city]=city.value;
@@ -120,6 +120,16 @@ const cityPerCount = traders.reduce((resultObj,city)=>{
   }
   return resultObj
 }, {});
+
+/*traders.reduce((cityObj,{trader})=>{
+  const {city} = trader;
+  if (cityObj[city]===undefined){
+    cityObj[city]=1;
+  } else {
+    cityObj[city]++;
+  }
+  return cityObj;
+})*/
 console.log(cityPerCount);
 console.log('=================');
 
