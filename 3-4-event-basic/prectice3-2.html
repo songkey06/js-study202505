@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        #image {
+            width: 100px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-group">
+        <button id="increaseSize">이미지 크기 증가</button>
+        <button id="decreaseSize">이미지 크기 감소</button>
+    </div>
+    <img id="image" src="https://image.yes24.com/goods/105982287/XL" alt="이미지">
+
+    <script>
+        const increaseSize = document.getElementById('increaseSize');
+        const decreaseSize = document.getElementById('decreaseSize');
+        const image = document.getElementById('image');
+        let width = 100;
+        function plus20px(){
+          width+= 20;
+          image.style.width = width + 'px';
+        }
+        function minus20px(){
+          width-= 20;
+          image.style.width = width + 'px';
+        }
+        increaseSize.addEventListener('click', () =>{
+          plus20px();
+          console.log(image.style.width);
+          decreaseSize.removeEventListener('click', minus20px);
+        })
+        decreaseSize.addEventListener('click', () =>{
+          minus20px();
+          increaseSize.removeEventListener('click', plus20px);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        body{
+            height: 3000px;
+        }
+        body.modal-open {
+            overflow: hidden; /* 모달이 열렸을 때 배경 스크롤 방지 */
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 2차 모달이 1차 모달보다 위에 보이도록 z-index를 높게 설정 */
+        #modal-overlay-2 {
+            background-color: rgba(0, 0, 0, 0.3); /* 살짝 옅게 해서 겹친 느낌 주기 */
+            z-index: 1001;
+        }
+
+        #modal-overlay-1 {
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #open-main-modal-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #open-nested-modal-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="open-main-modal-btn" class="btn">메인 모달 열기</button>
+
+    <div class="modal-overlay" id="modal-overlay-1">
+        <div class="modal-content">
+            <h2>1차 모달</h2>
+            <p>첫 번째 모달입니다. 여기서 다른 모달을 열 수 있습니다.</p>
+            <button id="open-nested-modal-btn" class="btn">중첩 모달 열기</button>
+            <button class="close-btn" data-modal-id="modal-overlay-1">닫기</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay-2">
+        <div class="modal-content">
+            <h2>2차 모달</h2>
+            <p>이 모달은 첫 번째 모달 위에서 열렸습니다.</p>
+            <button class="close-btn" data-modal-id="modal-overlay-2">닫기</button>
+        </div>
+    </div>
+
+    <script>
+      // ======요손노드 가져오기==== //
+      const $openModalBtn1 = document.getElementById('open-main-modal-btn');
+      const $closeModalBtn1 = document.querySelector('[data-modal-id="modal-overlay-1"]');
+      const $modalOverlay1 = document.getElementById('modal-overlay-1');
+
+      const $subModalBtn = document.getElementById('open-nested-modal-btn');
+      const $subOverlay = document.getElementById('modal-overlay-2');
+
+      // ============함수===========//
+      function openModal1() {
+        $modalOverlay1.style.display = 'flex';
+        document.body.classList.add(`modal-open`)
+      }
+
+      function closeModal1() {
+        $modalOverlay1.style.display = 'none';
+      }
+
+
+      /*
+      1. v) 모달 버튼 눌러서 로그 확인하ㅣ
+      2. v) 모달 버튼을 눌러서 모달 창 띄우기
+      3. v) 모달 창에서 닫기 눌러서 로그 확인
+      4. v) 모달창에서 닫기 눌러서 창 닫기
+      5. v) 닫기와 열기 리펙토링
+      6. v) esc로 창 닫기
+      7. v)배경 눌러서 창 닫기
+      8. 2차 모달 창 버튼 눌러서 로그 확인
+      9. 2차 모달 창 열기
+      10. 닫기로 1차 모달창으로 나가는지 확인
+      11. esc로 1차 모달창 가기
+      12. 배경으로 1차 모달창 가기*/
+
+      // =======이벤트 리스너=======//
+
+      // 메인 모달 열기 버튼 클릭시 1번 모달창 열기
+      $openModalBtn1.addEventListener('click', e => openModal1());
+
+      // 1번 모달창 닫기 버튼 눌러서 1번 모달창 닫기
+      $closeModalBtn1.addEventListener('click', e => closeModal1());
+
+      // esc키 눌러서 1번 모달창 닫기
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          closeModal1();
+        }
+      });
+
+      // 배경을 눌러서 창닫기
+      $modalOverlay1.addEventListener('click', e=>{
+        if (e.target.matches('.modal-overlay')){
+          closeModal1();
+          console.log(e.target);
+        }
+      })
+
+
+    </script>
+</body>
+</html>

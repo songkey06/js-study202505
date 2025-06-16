@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    2번
+    //3초마 순환하면서 바디의 백그라운드를 변경시킴
+    //단, 15초 후에는 더이상 배경 변경을 멈춰야함
+
+    <script>
+      const colors = ['red', 'green', 'blue']
+      const $body = document.querySelector('body');
+      let changeColor = null;
+      let currentIndex = 0;
+      $body.style.background = 'red';
+      changeColor =  setInterval(() =>{
+        currentIndex = (currentIndex +1)%colors.length;
+        console.log(currentIndex);
+        $body.style.background = colors[currentIndex];
+      }, 3000)
+      setTimeout(() =>{
+        clearInterval(changeColor)
+      }, 15000)
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스탑워치</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .stopwatch {
+            font-size: 2rem;
+            margin: 20px;
+        }
+
+        .buttons, .log-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .log-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .log-entry {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>스탑워치</h1>
+    <div class="stopwatch" id="display">00:00:00</div>
+    <div class="buttons">
+        <button id="start">시작</button>
+        <button id="pause" disabled>일시정지</button>
+        <button id="reset">초기화</button>
+    </div>
+    <div class="log-container" id="logContainer">
+        <h2>일시정지 로그</h2>
+    </div>
+
+    <script>
+      // (o)1. 현재 시간 - 시작 시간 로그 출력
+      // 2. 기록한 시간을 textcontent해서 렌더링
+      // 3. 시가 정지되게 하기
+      // 4. 시간 초기화하기
+      // 5. 시작, 일시정지, 초기화 토글
+      // 6. 일시 정지 로그
+      // 7. 일시 정지 로그 렌더링
+    // =========전역변수========/
+      const startTime = new Date();
+      const now = new Date();
+      const recordTime = now - startTime;
+      const displayTime = document.getElementById('display');
+
+
+      setInterval(() =>{
+        displayTime.textContent = +recordTime / 1000;
+        console.log();
+
+      },1);
+
+    </script>
+</body>
+</html>

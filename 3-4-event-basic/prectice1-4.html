@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <button id="myButton">이벤트 실행</button>
+    <button id="removeButton">이벤트 제거</button>
+
+    <script>
+        const myButton =document.getElementById('myButton');
+        const removeButton = document.getElementById('removeButton');
+
+        function showAlter(){
+          alert('이벤트가 실행되었습니다.')
+        }
+        //이벤트 추가
+        myButton.addEventListener('click', showAlter);
+
+        removeButton.addEventListener('click', function (){
+          myButton.removeEventListener('click', showAlter)
+          alert('이벤트 리스너가 제거되었습니다.');
+        });
+    </script>
+</body>
+</html>

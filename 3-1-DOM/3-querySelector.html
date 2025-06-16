@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+  <ul>
+    <li class="fruit apple">사과</li>
+    <li class="fruit banana">바나나</li>
+    <li class="fruit grape">포도</li>
+    <li class="fruit peach">복숭아</li>
+  </ul>
+
+  <script>
+    //포도 li를 가져오고 싶음.
+
+    // 유사 배열(array like)
+    /*const arraylike = {
+      0: '안녕',
+      1: '메롱',
+      length: 2
+    };
+    */
+
+    // querySelectorAll은 유사배열형태로 데이터를 모아오므로
+    // 기능 확장성이 낮음.
+    // 따라서 찐 배열로 바꿔서 쓰세요.
+    const elements = document.querySelectorAll('.fruit');
+    console.log(elements);
+
+    // const realArray = array.from(elements);
+    const realArray = [...elements];
+    console.log(realArray);
+    const $fruits = [...document.querySelectorAll('.fruit')];
+    console.log($fruits);
+
+    $fruits.forEach($li => {
+      $li.style.fontStyle = 'italic';
+      $li.style.border = '2px solid orange'
+    })
+  </script>
+
+</body>
+</html>
