@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+      const API_KEY='';
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+      const xhr = new XMLHttpRequest();
+
+      const aiPrompt = `
+      나는 사용자의 사주풀이를 해줄 예정이고
+      사용자는 아래에 키워드들을 넣을 거야
+      이 키워드들로 사주풀이를 해주면 돼!
+      [${keywords}]
+      `;
+      xhr.open('POST', url);
+
+      const payload = {
+        contents: [
+          {
+            parts: [
+              {
+                text: '야 나한테 인사해봐'
+              }
+            ]
+          }
+        ]
+      };
+
+      const reqData = JSON.stringify(payload);
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      xhr.send(reqData);
+
+      xhr.addEventListener('load', e => {
+        console.log(xhr.responseText);
+      });
+    </script>
+</body>
+</html>
