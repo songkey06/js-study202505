@@ -4,7 +4,7 @@
 // ========== 전역 변수 및 상수 ========== //
 
 // 💥 중요: 이 부분에 자신의 Gemini API 키를 입력하세요!
-const API_KEY = 'AIzaSyAj_qM96PSPRm71NMEGn8POr-qTkd2ncJc';
+const API_KEY = '';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 // 현재 추가된 재료들을 저장하는 배열 (상태 관리)
